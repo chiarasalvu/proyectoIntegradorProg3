@@ -1,0 +1,339 @@
+/* configuraciones principales y reset de etiquetas */
+* {
+    box-sizing: border-box;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+ul, ol {
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+body {
+    margin: 0 auto;
+    background-color: rgb(0, 0, 0);
+    color: white;
+}
+
+p {
+    color: white;
+}
+
+/* comenzamos con el header*/
+
+.encabezado {
+    margin:0;
+    display:flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    flex-direction: row;
+    background-image: url(../img/pochoclosheader.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    justify-content: space-around;
+}
+   
+.logo {
+    width: 100px;
+    height: auto;
+     
+}
+
+.movie {
+  width: 400px;
+}
+
+.señaladores ul{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 5%;
+    padding-inline-end: 5%; 
+}
+.señaladores ul li {
+    padding-left: 40px;
+    font-size: larger;
+    font-weight: bold;
+}
+
+.colorselector {
+    color: black;
+}
+
+.buscador {
+   margin: 0%;
+}
+
+/* seguimos con el contenido de la pagina home*/
+
+/*section de index y favorite*/
+.opciones {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(0, 0, 0);
+}
+
+/*div de index*/
+.opciones div  {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+/*article de index*/
+.divindex {
+    width: 48%;
+    margin-bottom: 10px;
+    text-align: center;
+    padding: 10px;
+    background-color: rgb(0, 0, 0);
+}
+
+/*imagenes de todos los archivos*/
+.portada {
+    width: 100%;
+    height: 725px ; 
+    border-style: groove;
+    margin-top: 20px;
+}
+
+
+h2 {
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 50px;
+    background-color: rgb(255, 255, 210);
+    background-repeat: no-repeat;
+    background-size: cover; 
+    color: black;
+    width: 100%;
+    padding: 30px 0;
+}
+
+.titulospelicula {
+    font-size: 17px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(255, 255, 255);
+    
+}
+
+.divindex div a{
+    display: inline-block;
+    width: 100%;
+
+}
+ 
+
+/* Comenzamos el footer*/
+  
+footer{
+    background-image: url(../img/pochoclosheader.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: black;
+    font-weight: bold;
+   margin-top: 20px;
+
+}
+
+footer ul {
+    display: flex;
+    justify-content: center;
+    padding: 15px;  
+    width: 100%;  
+}
+
+footer ul li {
+    padding: 30px;
+}
+
+
+/* Arrancamos con la pagina de detalle de peliculas */
+
+.titulodetallepelicula {
+    font-size: 40px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(255, 255, 255);
+}
+
+
+/* div de detail movie and serie y favorite*/
+.navdetalles {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    width:40%;
+    margin-bottom: 10px;
+    padding: 0;
+    justify-content: center;
+    font-size: 20px;
+    margin: 0 auto;
+}
+
+/* pagina genres */
+
+.detailgenero {
+    margin: 25px; 
+}
+
+.titulosdetailgenres {
+    font-size: 25px;
+}
+
+#maingenres{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.colorpeligenre {
+    background-color: rgb(204, 160, 64);
+    width: 100%;
+    margin: 10px;
+    text-align: center;
+    border-radius: 100px;
+}
+
+.sectiongenre {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    width: 40%;
+    margin: 0 auto;
+    align-items: center;
+    
+}
+
+.titulosgenres {
+    font-size: 40px;
+}
+/* Comenzamos con pagina favorito (tiene mismos estilos que pagina de detalles de movies y series) */
+
+#titulofavorito {
+    text-align: center;
+    font-size: 50px;
+    margin: 0 auto;
+}
+
+/* Comenzamos con pagina de search results (tiene mismos estilos que pagina de detalles de movies y series) */
+
+.titulosearch {
+    padding-left: 10px;
+}
+
+/* #novisible {
+    display: none; 
+}*/
+
+.mensaje {
+    color: black;
+    background-color: blanchedalmond;
+}
+
+#peliFav {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+#serieFav {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+#giphy {
+    width: 100px;
+    height: auto;
+    align-items: center;
+}
+
+#boton {
+    border-radius: 5px;
+    background-color:blanchedalmond;
+    color: black;
+    font-size: 20px;
+
+}
+
+.agregarFav {
+    padding-bottom: 10px;
+}
+
+/* Comenzamos con media queries de la pagina index */
+
+@media (min-width: 960px) {
+    .divindex {
+        width: 20%;
+    }
+    .portada {
+        height: 500px;
+    }
+
+    /* Comenzamos con la media queries de la pagina detail-movie y detail-serie */
+   
+    .navdetalles {
+        width: 40%;
+        margin: 25px;
+        justify-content: center;
+    }
+
+    
+    .maindetail {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        
+    }
+
+    /* section del favorite*/ 
+    .favoritosgeneral {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+
+    #Soncomoniñosjodon {
+        width: 500px;
+    }
+
+
+   .searchresultarticle {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        background-color: rgb(0, 0, 0);
+      
+    }
+
+}
+
+ 
+
+
+
+
+
+
+
+
+
+
+
