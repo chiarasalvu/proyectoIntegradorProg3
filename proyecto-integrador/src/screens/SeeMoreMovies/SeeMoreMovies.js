@@ -37,7 +37,21 @@ class SeeMoreMovies extends Component {
             .catch()
     }
 
+    evitarSubmit(event) {
+        event.preventDefault();
+    }
 
+    controlarCambios(event) {
+        this.setState({ valor: event.target.value }, () => this.filtrarPeliculas(this.state.valor))
+    }
+
+    filtrarPeliculas(textoDelUsuario) {
+        let peliculasFiltradas = this.state.peliculasIniciales.filter(unaPelicula => unaPelicula.title.toLowerCase().includes(textoDelUsuario.toLowerCase()));
+        
+        this.setState({
+            peliculas: peliculasFiltradas,
+        })
+    }
 
     render() {
         return (

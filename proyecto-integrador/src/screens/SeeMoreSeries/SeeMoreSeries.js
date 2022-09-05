@@ -37,7 +37,21 @@ class SeeMoreSeries extends Component {
             .catch()
     }
 
+    evitarSubmit(event) {
+        event.preventDefault();
+    }
 
+    controlarCambios(event) {
+        this.setState({ valor: event.target.value }, () => this.filtrarSeries(this.state.valor))
+    }
+
+    filtrarSeries(textoDelUsuario) {
+        let seriesFiltradas = this.state.seriesIniciales.filter(unaSerie => unaSerie.name.toLowerCase().includes(textoDelUsuario.toLowerCase()));
+        
+        this.setState({
+            series: seriesFiltradas,
+        })
+    }
 
     render() {
         return (
