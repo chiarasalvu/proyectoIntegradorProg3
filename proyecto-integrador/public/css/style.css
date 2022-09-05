@@ -37,7 +37,7 @@ p {
     justify-content: space-around;
     width: 100%;
     flex-direction: row;
-    background-image: url(../img/pochoclosheader.jpg);
+    background-image: url(../img/pochoclos.jpeg);
     background-repeat: no-repeat;
     background-size: cover;
     justify-content: space-around;
@@ -140,7 +140,7 @@ h2 {
 /* Comenzamos el footer*/
   
 footer{
-    background-image: url(../img/pochoclosheader.jpg);
+    background-image: url(../img/pochoclos.jpeg);
     background-repeat: no-repeat;
     background-size: cover;
     color: black;

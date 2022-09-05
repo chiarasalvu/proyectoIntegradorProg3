@@ -19,12 +19,7 @@ class Home extends Component {
             <React.Fragment>
                 <main>
                     <Movies />
-                    <section className="opciones">
-                        <h2>SERIES POPULARES</h2>
-                        <div id="series-populares">
-                            <Series />
-                        </div>
-                    </section>
+                    <Series />
                 </main>
             </React.Fragment>
         )

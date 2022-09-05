@@ -77,7 +77,7 @@ class SerieCard extends Component {
                 <img src= {`https://image.tmdb.org/t/p/w342/${this.props.datosSerie.poster_path}`} alt=""  className="portada"/> 
                 </Link>
                 </div>
-                    <h2 className="titulospelicula">{this.props.datosSerie.name}</h2> {/* Nombre */}
+                    <h2>{this.props.datosSerie.name}</h2> {/* Nombre */}
                 
                 <p>{this.props.datosSerie.overview}</p> {/*Descripción*/}
                 <p className='more'>Ver más</p>
