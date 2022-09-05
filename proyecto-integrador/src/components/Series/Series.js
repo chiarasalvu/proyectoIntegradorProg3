@@ -24,7 +24,6 @@ class Series extends Component {
 
 
     render() {
-        console.log(this.state.series)
         return (
 
             <React.Fragment>
