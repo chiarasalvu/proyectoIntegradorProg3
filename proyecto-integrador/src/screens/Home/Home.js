@@ -4,8 +4,8 @@ import Series from '../../components/Series/Series'
 
 
 class Home extends Component {
-    constructor(props) {
-        super(props)
+    constructor() {
+        super()
 
         this.state = {
 

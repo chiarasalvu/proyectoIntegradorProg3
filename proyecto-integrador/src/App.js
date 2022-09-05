@@ -8,7 +8,6 @@ import {Route, Switch} from 'react-router-dom';
 function App() {
   return (
     <React.Fragment>
-      
       <main>
       <Switch>
         <Route exact={true} path="/" component={Home} />
