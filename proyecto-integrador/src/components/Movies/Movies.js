@@ -24,7 +24,6 @@ class Movies extends Component {
 
     
     render() {
-        console.log(this.state.peliculas)
         return(
             
             <React.Fragment>
