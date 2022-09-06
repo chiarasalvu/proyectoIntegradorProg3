@@ -11,15 +11,11 @@ class MovieCard extends Component {
 
 
     componentDidMount() {
-
         let favoritos = [];
-
         let recuperoStorage = localStorage.getItem('favoritos')
 
         if (recuperoStorage !== null) {
-
             let favoritosToArray = JSON.parse(recuperoStorage);
-
             favoritos = favoritosToArray
 
             if (favoritos.includes(this.props.datosPelicula.id)) {
@@ -32,18 +28,13 @@ class MovieCard extends Component {
 
     }
 
-
-
-
     agregarYQuitarDeFavoritos(id) {
         let favoritos = [];
-
         let recuperoStorage = localStorage.getItem('favoritos')
 
         if (recuperoStorage !== null) {
             let favoritosToArray = JSON.parse(recuperoStorage);
             favoritos = favoritosToArray
-
         }
 
         //Preguntemos si el id ya está en el array
@@ -53,32 +44,27 @@ class MovieCard extends Component {
                 mensajeFavorito: 'Agregar a favoritos'
             })
         } else {
-
             favoritos.push(id); this.setState({
                 mensajeFavorito: 'Quitar de favoritos'
             })
-
-
         }
 
         let favoritosToString = JSON.stringify(favoritos)
         localStorage.setItem('favoritos', favoritosToString)
-
         //console.log(localStorage);
     }
-
 
     render() {
         // console.log(this.props);
         return (
             <article className='divindex'>
                 <div>
-                 <Link to={`/peliculas/id/${this.props.datosPelicula.id}`}>
-                <img src= {`https://image.tmdb.org/t/p/w342/${this.props.datosPelicula.poster_path}`} alt="" /> 
-                </Link>
+                    <Link to={`/peliculas/id/${this.props.datosPelicula.id}`}>
+                        <img src={`https://image.tmdb.org/t/p/w342/${this.props.datosPelicula.poster_path}`} alt="" />
+                    </Link>
                 </div>
-                    <h2>{this.props.datosPelicula.title}</h2> {/* Nombre */}
-                
+                <h2>{this.props.datosPelicula.title}</h2> {/* Nombre */}
+
                 <p>{this.props.datosPelicula.overview}</p> {/*Descripción*/}
                 <p className='more'>Ver más</p>
 
@@ -87,7 +73,6 @@ class MovieCard extends Component {
 
         )
     }
-
 }
 
 export default MovieCard;
