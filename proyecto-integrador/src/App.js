@@ -18,8 +18,8 @@ function App() {
         <Switch>
           <Route exact={true} path="/" component={Home} />
           <Route path="/favoritos" component={Favorites} />
-          {/* <Route exact={true} path="/peliculas" component={SeeMoreMovies} />
-          <Route exact={true} path="/series" component={SeeMoreSeries} /> */}
+          <Route exact={true} path="/peliculas" component={SeeMoreMovies} />
+          <Route exact={true} path="/series" component={SeeMoreSeries} />
           <Route path='' component={NotFound}/>
         </Switch>
       </main>
