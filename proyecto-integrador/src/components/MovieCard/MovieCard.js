@@ -14,15 +14,11 @@ class MovieCard extends Component {
 
 
     componentDidMount() {
-
         let favoritos = [];
-
         let recuperoStorage = localStorage.getItem('favoritos')
 
         if (recuperoStorage !== null) {
-
             let favoritosToArray = JSON.parse(recuperoStorage);
-
             favoritos = favoritosToArray
 
             if (favoritos.includes(this.props.datosPelicula.id)) {
@@ -55,13 +51,11 @@ class MovieCard extends Component {
 
     agregarYQuitarDeFavoritos(id) {
         let favoritos = [];
-
         let recuperoStorage = localStorage.getItem('favoritos')
 
         if (recuperoStorage !== null) {
             let favoritosToArray = JSON.parse(recuperoStorage);
             favoritos = favoritosToArray
-
         }
 
         //Preguntemos si el id ya está en el array
@@ -71,20 +65,15 @@ class MovieCard extends Component {
                 mensajeFavorito: 'Agregar a favoritos'
             })
         } else {
-
             favoritos.push(id); this.setState({
                 mensajeFavorito: 'Quitar de favoritos'
             })
-
-
         }
 
         let favoritosToString = JSON.stringify(favoritos)
         localStorage.setItem('favoritos', favoritosToString)
-
         //console.log(localStorage);
     }
-
 
     render() {
         // console.log(this.props);
@@ -100,14 +89,13 @@ class MovieCard extends Component {
                 
                 <p className='more' onClick={() => this.verMas()}>{this.state.mensajeVerMas}</p>
                 <p className={this.state.booleanoVerMas ? '' : 'no-visible'}>{this.props.datosPelicula.overview}</p> {/*Descripción*/}
-
+                
                 <button onClick={() => this.agregarYQuitarDeFavoritos(this.props.datosPelicula.id)}>{this.state.mensajeFavorito}</button>
                 
             </article>
 
         )
     }
-
 }
 
 export default MovieCard;
