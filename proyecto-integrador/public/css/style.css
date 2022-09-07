@@ -135,7 +135,10 @@ h2 {
     width: 100%;
 
 }
- 
+
+.no-visible {
+    display: none;
+}
 
 /* Comenzamos el footer*/
   
@@ -234,9 +237,6 @@ footer ul li {
     padding-left: 10px;
 }
 
-/* #novisible {
-    display: none; 
-}*/
 
 .mensaje {
     color: black;

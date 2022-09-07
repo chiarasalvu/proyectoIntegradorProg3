@@ -5,7 +5,10 @@ class MovieCard extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            mensajeFavorito: 'Agregar a favoritos'
+            mensajeFavorito: 'Agregar a favoritos',
+            mensajeVerMas : 'Ver más',
+            booleanoVerMas: false
+            
         }
     }
 
@@ -32,6 +35,21 @@ class MovieCard extends Component {
 
     }
 
+
+    verMas(){
+        if(this.state.mensajeVerMas === 'Ver más'){
+            this.setState({
+                booleanoVerMas : true,
+                mensajeVerMas : 'Ver menos'
+          } )
+          } else {
+              this.setState({
+                booleanoVerMas : false,
+                mensajeVerMas : 'Ver más'
+            } )
+          
+          }
+    }
 
 
 
@@ -79,10 +97,12 @@ class MovieCard extends Component {
                 </div>
                     <h2>{this.props.datosPelicula.title}</h2> {/* Nombre */}
                 
-                <p>{this.props.datosPelicula.overview}</p> {/*Descripción*/}
-                <p className='more'>Ver más</p>
+                
+                <p className='more' onClick={() => this.verMas()}>{this.state.mensajeVerMas}</p>
+                <p className={this.state.booleanoVerMas ? '' : 'no-visible'}>{this.props.datosPelicula.overview}</p> {/*Descripción*/}
 
-                <p onClick={() => this.agregarYQuitarDeFavoritos(this.props.datosPelicula.id)}>{this.state.mensajeFavorito}</p>
+                <button onClick={() => this.agregarYQuitarDeFavoritos(this.props.datosPelicula.id)}>{this.state.mensajeFavorito}</button>
+                
             </article>
 
         )
