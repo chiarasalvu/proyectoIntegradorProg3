@@ -7,23 +7,61 @@ class SerieDetail extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            info:{
+            info: {
                 genres: []
 
-            }
-                ,
-           
+            },
+            mensajeFavorito: 'Agregar a favoritos',
         }
     };
 
     componentDidMount() {
-        fetch('https://api.themoviedb.org/3/tv/' + this.props.match.params.id + '?api_key=' + apiKey +'&language=en-US')
+        fetch('https://api.themoviedb.org/3/tv/' + this.props.match.params.id + '?api_key=' + apiKey + '&language=en-US')
             .then(res => res.json())
             .then(data => this.setState({
                 info: data
             }, () => console.log(this.state.info)))
             .catch(error => console.log('El error fue: ' + error))
 
+        let favoritos = [];
+        let recuperoStorage = localStorage.getItem('favoritosSerie')
+
+        if (recuperoStorage !== null) {
+            let favoritosToArray = JSON.parse(recuperoStorage);
+            favoritos = favoritosToArray
+
+            if (favoritos.includes(this.props.match.params.id)) {
+                this.setState({
+                    mensajeFavorito: 'Quitar de favoritos'
+                })
+            }
+        }
+    }
+
+    agregarYQuitarDeFavoritos(id) {
+        let favoritos = [];
+        let recuperoStorage = localStorage.getItem('favoritosSerie')
+
+        if (recuperoStorage !== null) {
+            let favoritosToArray = JSON.parse(recuperoStorage);
+            favoritos = favoritosToArray
+        }
+
+        //Preguntemos si el id ya está en el array
+        if (favoritos.includes(id)) { //el método includes retorna un booleano
+            favoritos = favoritos.filter(unId => unId !== id)
+            this.setState({
+                mensajeFavorito: 'Agregar a favoritos'
+            })
+        } else {
+            favoritos.push(id); this.setState({
+                mensajeFavorito: 'Quitar de favoritos'
+            })
+        }
+
+        let favoritosToString = JSON.stringify(favoritos)
+        localStorage.setItem('favoritosSerie', favoritosToString)
+        //console.log(localStorage);
     }
 
     render() {
@@ -51,12 +89,7 @@ class SerieDetail extends Component {
                         <p>Fecha de estreno: {this.state.info.release_date}</p>
                         <p>Calificación:{this.state.info.vote_average}</p>
                         <p>{this.state.info.overview}</p>
-
-
-
-
-
-
+                        <button onClick={() => this.agregarYQuitarDeFavoritos(this.state.info.id)}>{this.state.mensajeFavorito}</button>
                     </article>
                 </section>
             </React.Fragment >

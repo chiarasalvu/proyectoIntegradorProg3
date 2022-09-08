@@ -21,7 +21,7 @@ class SeeMoreMovies extends Component {
             .then(data => this.setState({
                 peliculas: data.results,
                 peliculasIniciales: data.results
-            }))
+            } ))
             .catch()
     }
 

@@ -10,8 +10,8 @@ class MovieDetail extends Component {
             info:{
                 genres: []
 
-            }
-                ,
+            },
+            mensajeFavorito: 'Agregar a favoritos',
            
         }
     };
@@ -24,6 +24,47 @@ class MovieDetail extends Component {
             }, () => console.log(this.state.info)))
             .catch(error => console.log('El error fue: ' + error))
 
+
+            let favoritos = [];
+            let recuperoStorage = localStorage.getItem('favoritosMovie')
+    
+            if (recuperoStorage !== null) {
+                let favoritosToArray = JSON.parse(recuperoStorage);
+                favoritos = favoritosToArray
+    
+                if (favoritos.includes(this.props.match.params.id)) {
+                    this.setState({
+                        mensajeFavorito: 'Quitar de favoritos'
+                    })
+                }
+            }
+
+    }
+
+    agregarYQuitarDeFavoritos(id) {
+        let favoritos = [];
+        let recuperoStorage = localStorage.getItem('favoritosMovie')
+
+        if (recuperoStorage !== null) {
+            let favoritosToArray = JSON.parse(recuperoStorage);
+            favoritos = favoritosToArray
+        }
+
+        //Preguntemos si el id ya está en el array
+        if (favoritos.includes(id)) { //el método includes retorna un booleano
+            favoritos = favoritos.filter(unId => unId !== id)
+            this.setState({
+                mensajeFavorito: 'Agregar a favoritos'
+            })
+        } else {
+            favoritos.push(id); this.setState({
+                mensajeFavorito: 'Quitar de favoritos'
+            })
+        }
+
+        let favoritosToString = JSON.stringify(favoritos)
+        localStorage.setItem('favoritosMovie', favoritosToString)
+        //console.log(localStorage);
     }
 
     render() {
@@ -33,7 +74,15 @@ class MovieDetail extends Component {
 
                 <section className="opciones">
                     <h2>DETALLES DE LA PELÍCULA</h2>
-                    <article className='divindex'>
+
+                    {
+                        this.state.info.length === 0 ?
+                        <div> 
+                            <img scr="https://c.tenor.com/1qrYT711uEoAAAAC/cargando.gif" alt= "loader"/> 
+                        </div>
+
+                        :
+                        <article className='divindex'>
                         <div>
 
                             <img src={`https://image.tmdb.org/t/p/w342/${this.state.info.poster_path}`} alt="" />
@@ -52,13 +101,11 @@ class MovieDetail extends Component {
                         <p>Calificación:{this.state.info.vote_avarage}</p>
                         <p>Duración: {this.state.info.runtime} minutos</p>
                         <p>{this.state.info.overview}</p>
-
-
-
-
-
+                        <button onClick={() => this.agregarYQuitarDeFavoritos(this.state.info.id)}>{this.state.mensajeFavorito}</button>
 
                     </article>
+                    }
+  
                 </section>
             </React.Fragment >
         )
