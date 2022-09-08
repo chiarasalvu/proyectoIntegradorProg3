@@ -15,7 +15,7 @@ class MovieCard extends Component {
 
     componentDidMount() {
         let favoritos = [];
-        let recuperoStorage = localStorage.getItem('favoritos')
+        let recuperoStorage = localStorage.getItem('favoritosMovie')
 
         if (recuperoStorage !== null) {
             let favoritosToArray = JSON.parse(recuperoStorage);
@@ -51,7 +51,7 @@ class MovieCard extends Component {
 
     agregarYQuitarDeFavoritos(id) {
         let favoritos = [];
-        let recuperoStorage = localStorage.getItem('favoritos')
+        let recuperoStorage = localStorage.getItem('favoritosMovie')
 
         if (recuperoStorage !== null) {
             let favoritosToArray = JSON.parse(recuperoStorage);
@@ -71,7 +71,7 @@ class MovieCard extends Component {
         }
 
         let favoritosToString = JSON.stringify(favoritos)
-        localStorage.setItem('favoritos', favoritosToString)
+        localStorage.setItem('favoritosMovie', favoritosToString)
         //console.log(localStorage);
     }
 

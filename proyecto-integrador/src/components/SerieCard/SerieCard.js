@@ -14,7 +14,7 @@ class SerieCard extends Component {
 
         let favoritos = [];
 
-        let recuperoStorage = localStorage.getItem('favoritos')
+        let recuperoStorage = localStorage.getItem('favoritosSerie')
 
         if (recuperoStorage !== null) {
 
@@ -38,7 +38,7 @@ class SerieCard extends Component {
     agregarYQuitarDeFavoritos(id) {
         let favoritos = [];
 
-        let recuperoStorage = localStorage.getItem('favoritos')
+        let recuperoStorage = localStorage.getItem('favoritosSerie')
 
         if (recuperoStorage !== null) {
             let favoritosToArray = JSON.parse(recuperoStorage);
@@ -62,7 +62,7 @@ class SerieCard extends Component {
         }
 
         let favoritosToString = JSON.stringify(favoritos)
-        localStorage.setItem('favoritos', favoritosToString)
+        localStorage.setItem('favoritosSerie', favoritosToString)
 
         //console.log(localStorage);
     }
@@ -82,7 +82,7 @@ class SerieCard extends Component {
                 <p>{this.props.datosSerie.overview}</p> {/*Descripción*/}
                 <p className='more'>Ver más</p>
 
-                <p onClick={() => this.agregarYQuitarDeFavoritos(this.props.datosSerie.id)}>{this.state.mensajeFavorito}</p>
+                <button onClick={() => this.agregarYQuitarDeFavoritos(this.props.datosSerie.id)}>{this.state.mensajeFavorito}</button>
             </article>
 
         )
