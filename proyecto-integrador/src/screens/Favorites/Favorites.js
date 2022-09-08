@@ -10,7 +10,7 @@ class Favorites extends Component {
         super()
         this.state = {
             peliculas: [],
-            series : []
+            series: []
         }
     }
 
@@ -21,13 +21,13 @@ class Favorites extends Component {
 
         if (recuperoStorageMovie !== null) {
             favoritos = JSON.parse(recuperoStorageMovie) //es un array de ids
-      
+
             //recorrer el array y pedirla al endpoint por los datos de cada personaje.
             favoritos.forEach(unIdFavorito => {
                 //pedir por cada id los datos del personaje
                 fetch(`https://api.themoviedb.org/3/movie/${unIdFavorito}&?api_key=${apiKey}`)
                     .then(res => res.json())
-                    .then(data => this.setState({ 
+                    .then(data => this.setState({
                         peliculas: this.state.peliculas.concat([data])
                     }, () => console.log(this.state.peliculas)))
                     .catch(e => console.log(e))
@@ -36,14 +36,14 @@ class Favorites extends Component {
 
         if (recuperoStorageSerie !== null) {
             favoritos = JSON.parse(recuperoStorageSerie) //es un array de ids
-     
+
 
             //recorrer el array y pedirla al endpoint por los datos de cada personaje.
             favoritos.forEach(unIdFavorito => {
                 //pedir por cada id los datos del personaje
                 fetch(`https://api.themoviedb.org/3/tv/${unIdFavorito}&?api_key=${apiKey}`)
                     .then(res => res.json())
-                    .then(data => this.setState({ 
+                    .then(data => this.setState({
                         series: this.state.series.concat([data])
                     }, () => console.log(this.state.series)))
                     .catch(e => console.log(e))
@@ -66,13 +66,15 @@ class Favorites extends Component {
             <React.Fragment>
                 <h2>Favoritos</h2>
                 <section className="opciones" id="movieFav">
+                    <h3>Películas Favortias</h3>
                     {
-                        this.state.peliculas.map((unaPelicula, idx) => <MovieCard key={unaPelicula.title + idx} datosPelicula={unaPelicula} borrar={(id) => this.borrar(id)}/>)
+                        this.state.peliculas.map((unaPelicula, idx) => <MovieCard key={unaPelicula.title + idx} datosPelicula={unaPelicula} borrar={(id) => this.borrar(id)} />)
                     }
                 </section>
                 <section className="opciones" id="serieFav">
+                    <h3>Series Favortias</h3>
                     {
-                        this.state.series.map((unaSerie, idx) => <SerieCard key={unaSerie.name + idx} datosSerie={unaSerie} borrar={(id) => this.borrar(id)}/>)
+                        this.state.series.map((unaSerie, idx) => <SerieCard key={unaSerie.name + idx} datosSerie={unaSerie} borrar={(id) => this.borrar(id)} />)
                     }
                 </section>
             </React.Fragment>

@@ -5,7 +5,9 @@ class SerieCard extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            mensajeFavorito: 'Agregar a favoritos'
+            mensajeFavorito: 'Agregar a favoritos',
+            mensajeVerMas: 'Ver más',
+            booleanoVerMas: false
         }
     }
 
@@ -30,6 +32,20 @@ class SerieCard extends Component {
         }
 
 
+    }
+
+    verMas() {
+        if (this.state.mensajeVerMas === 'Ver más') {
+            this.setState({
+                booleanoVerMas: true,
+                mensajeVerMas: 'Ver menos'
+            })
+        } else {
+            this.setState({
+                booleanoVerMas: false,
+                mensajeVerMas: 'Ver más'
+            })
+        }
     }
 
 
@@ -79,8 +95,8 @@ class SerieCard extends Component {
                 </div>
                     <h2>{this.props.datosSerie.name}</h2> {/* Nombre */}
                 
-                <p>{this.props.datosSerie.overview}</p> {/*Descripción*/}
-                <p className='more'>Ver más</p>
+                    <p className='more' onClick={() => this.verMas()}>{this.state.mensajeVerMas}</p>
+                <p className={this.state.booleanoVerMas ? '' : 'no-visible'}>{this.props.datosSerie.overview}</p> {/*Descripción*/}
                 
                 <button onClick={() => {
                     this.agregarYQuitarDeFavoritos(this.props.datosSerie.id);
