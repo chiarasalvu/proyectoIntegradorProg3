@@ -24,11 +24,11 @@ class Favorites extends Component {
                 //pedir por cada id los datos del personaje
                 fetch(`https://api.themoviedb.org/3/movie/${unIdFavorito}&?api_key=${apiKey}`)
                     .then(res => res.json())
-                    .then(data => peliculas.push(data))
+                    .then(data => this.setState({ 
+                        peliculas: this.state.peliculas.concat([data])
+                    }, () => console.log(this.state.peliculas)))
                     .catch(e => console.log(e))
             })
-
-            console.log(peliculas);
         }
     }
 
