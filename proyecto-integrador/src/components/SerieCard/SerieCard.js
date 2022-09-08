@@ -73,7 +73,7 @@ class SerieCard extends Component {
         return (
             <article className='divindex'>
                 <div>
-                 <Link to={`/peliculas/id/${this.props.datosSerie.id}`}>
+                 <Link to={`/series/id/${this.props.datosSerie.id}`}>
                 <img src= {`https://image.tmdb.org/t/p/w342/${this.props.datosSerie.poster_path}`} alt=""  className="portada"/> 
                 </Link>
                 </div>

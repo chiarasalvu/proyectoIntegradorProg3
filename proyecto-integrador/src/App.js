@@ -7,7 +7,8 @@ import Favorites from "./screens/Favorites/Favorites";
 import SeeMoreMovies from "./screens/SeeMoreMovies/SeeMoreMovies";
 import SeeMoreSeries from "./screens/SeeMoreSeries/SeeMoreSeries";
 import NotFound from "./screens/NotFound/NotFound";
-
+import DetailMovie from "./screens/DetailMovie/DetailMovie";
+import DetailSerie from "./screens/DetailSerie/DetailSerie";
 import { Route, Switch } from 'react-router-dom';
 
 function App() {
@@ -20,6 +21,8 @@ function App() {
           <Route path="/favoritos" component={Favorites} />
           <Route exact={true} path="/peliculas" component={SeeMoreMovies} />
           <Route exact={true} path="/series" component={SeeMoreSeries} />
+          <Route  path="/peliculas/id/:id" component={DetailMovie} />
+          <Route  path="/series/id/:id" component={DetailSerie} />
           <Route path='' component={NotFound}/>
         </Switch>
       </main>
