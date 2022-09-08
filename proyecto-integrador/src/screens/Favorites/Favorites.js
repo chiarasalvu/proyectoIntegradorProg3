@@ -51,6 +51,14 @@ class Favorites extends Component {
         }
     }
 
+    borrar(id) {
+        let peliculasFiltradas = this.state.peliculas.filter(unaPelicula => unaPelicula.id !== id);
+        let seriesFiltradas = this.state.series.filter(unaSerie => unaSerie.id !== id);
+        this.setState({
+            peliculas: peliculasFiltradas,
+            series: seriesFiltradas
+        })
+    }
 
 
     render() {
@@ -59,12 +67,12 @@ class Favorites extends Component {
                 <h2>Favoritos</h2>
                 <section className="opciones" id="movieFav">
                     {
-                        this.state.peliculas.map((unaPelicula, idx) => <MovieCard key={unaPelicula.title + idx} datosPelicula={unaPelicula} />)
+                        this.state.peliculas.map((unaPelicula, idx) => <MovieCard key={unaPelicula.title + idx} datosPelicula={unaPelicula} borrar={(id) => this.borrar(id)}/>)
                     }
                 </section>
                 <section className="opciones" id="serieFav">
                     {
-                        this.state.series.map((unaSerie, idx) => <SerieCard key={unaSerie.name + idx} datosSerie={unaSerie} />)
+                        this.state.series.map((unaSerie, idx) => <SerieCard key={unaSerie.name + idx} datosSerie={unaSerie} borrar={(id) => this.borrar(id)}/>)
                     }
                 </section>
             </React.Fragment>

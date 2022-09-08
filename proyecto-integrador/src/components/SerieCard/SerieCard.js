@@ -81,8 +81,14 @@ class SerieCard extends Component {
                 
                 <p>{this.props.datosSerie.overview}</p> {/*Descripción*/}
                 <p className='more'>Ver más</p>
-
-                <button onClick={() => this.agregarYQuitarDeFavoritos(this.props.datosSerie.id)}>{this.state.mensajeFavorito}</button>
+                
+                <button onClick={() => {
+                    this.agregarYQuitarDeFavoritos(this.props.datosSerie.id);
+                    this.props.borrar(this.props.datosSerie.id);
+                }}>
+                    {this.state.mensajeFavorito}
+                </button>
+                
             </article>
 
         )

@@ -6,12 +6,10 @@ class MovieCard extends Component {
         super(props)
         this.state = {
             mensajeFavorito: 'Agregar a favoritos',
-            mensajeVerMas : 'Ver más',
+            mensajeVerMas: 'Ver más',
             booleanoVerMas: false
-            
         }
     }
-
 
     componentDidMount() {
         let favoritos = [];
@@ -27,27 +25,21 @@ class MovieCard extends Component {
                 })
             }
         }
-
-
     }
 
-
-    verMas(){
-        if(this.state.mensajeVerMas === 'Ver más'){
+    verMas() {
+        if (this.state.mensajeVerMas === 'Ver más') {
             this.setState({
-                booleanoVerMas : true,
-                mensajeVerMas : 'Ver menos'
-          } )
-          } else {
-              this.setState({
-                booleanoVerMas : false,
-                mensajeVerMas : 'Ver más'
-            } )
-          
-          }
+                booleanoVerMas: true,
+                mensajeVerMas: 'Ver menos'
+            })
+        } else {
+            this.setState({
+                booleanoVerMas: false,
+                mensajeVerMas: 'Ver más'
+            })
+        }
     }
-
-
 
     agregarYQuitarDeFavoritos(id) {
         let favoritos = [];
@@ -76,22 +68,25 @@ class MovieCard extends Component {
     }
 
     render() {
-        // console.log(this.props);
         return (
             <article className='divindex'>
                 <div>
-                 <Link to={`/peliculas/id/${this.props.datosPelicula.id}`}>
-                <img src= {`https://image.tmdb.org/t/p/w342/${this.props.datosPelicula.poster_path}`} alt="" /> 
-                </Link>
+                    <Link to={`/peliculas/id/${this.props.datosPelicula.id}`}>
+                        <img src={`https://image.tmdb.org/t/p/w342/${this.props.datosPelicula.poster_path}`} alt="" />
+                    </Link>
                 </div>
-                    <h2>{this.props.datosPelicula.title}</h2> {/* Nombre */}
-                
-                
+                <h2>{this.props.datosPelicula.title}</h2> {/* Nombre */}
+
                 <p className='more' onClick={() => this.verMas()}>{this.state.mensajeVerMas}</p>
                 <p className={this.state.booleanoVerMas ? '' : 'no-visible'}>{this.props.datosPelicula.overview}</p> {/*Descripción*/}
-                
-                <button onClick={() => this.agregarYQuitarDeFavoritos(this.props.datosPelicula.id)}>{this.state.mensajeFavorito}</button>
-                
+
+                <button onClick={() => {
+                    this.agregarYQuitarDeFavoritos(this.props.datosPelicula.id);
+                    this.props.borrar(this.props.datosPelicula.id);
+                }}>
+                    {this.state.mensajeFavorito}
+                </button>
+
             </article>
 
         )
