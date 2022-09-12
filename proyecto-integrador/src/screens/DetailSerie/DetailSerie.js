@@ -86,7 +86,7 @@ class SerieDetail extends Component {
                             }
                         </ul>
 
-                        <p>Fecha de estreno: {this.state.info.release_date}</p>
+                        <p>Fecha de estreno: {this.state.info.first_air_date}</p>
                         <p>Calificación:{this.state.info.vote_average}</p>
                         <p>{this.state.info.overview}</p>
                         <button onClick={() => this.agregarYQuitarDeFavoritos(this.state.info.id)}>{this.state.mensajeFavorito}</button>

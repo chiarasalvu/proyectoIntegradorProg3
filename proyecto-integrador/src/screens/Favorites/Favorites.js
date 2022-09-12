@@ -10,7 +10,8 @@ class Favorites extends Component {
         super()
         this.state = {
             peliculas: [],
-            series: []
+            series: [],
+            isFav: true,
         }
     }
 
@@ -66,13 +67,13 @@ class Favorites extends Component {
             <React.Fragment>
                 <h2>Favoritos</h2>
                 <section className="opciones" id="movieFav">
-                    <h3>Películas Favortias</h3>
+                    <h3>Películas Favoritas</h3>
                     {
-                        this.state.peliculas.map((unaPelicula, idx) => <MovieCard key={unaPelicula.title + idx} datosPelicula={unaPelicula} borrar={(id) => this.borrar(id)} />)
+                        this.state.peliculas.map((unaPelicula, idx) => <MovieCard key={unaPelicula.title + idx} isFav={this.state.isFav} datosPelicula={unaPelicula} borrar={(id) => this.borrar(id)} />)
                     }
                 </section>
                 <section className="opciones" id="serieFav">
-                    <h3>Series Favortias</h3>
+                    <h3>Series Favoritas</h3>
                     {
                         this.state.series.map((unaSerie, idx) => <SerieCard key={unaSerie.name + idx} datosSerie={unaSerie} borrar={(id) => this.borrar(id)} />)
                     }

@@ -93,7 +93,7 @@ class SerieCard extends Component {
                 <img src= {`https://image.tmdb.org/t/p/w342/${this.props.datosSerie.poster_path}`} alt=""  className="portada"/> 
                 </Link>
                 </div>
-                    <h2>{this.props.datosSerie.name}</h2> {/* Nombre */}
+                    <h3>{this.props.datosSerie.name}</h3> {/* Nombre */}
                 
                     <p className='more' onClick={() => this.verMas()}>{this.state.mensajeVerMas}</p>
                 <p className={this.state.booleanoVerMas ? '' : 'no-visible'}>{this.props.datosSerie.overview}</p> {/*Descripción*/}

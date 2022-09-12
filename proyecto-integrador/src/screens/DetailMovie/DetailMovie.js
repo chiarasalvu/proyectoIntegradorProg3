@@ -98,7 +98,7 @@ class MovieDetail extends Component {
                         </ul>
 
                         <p>Fecha de estreno: {this.state.info.release_date}</p>
-                        <p>Calificación:{this.state.info.vote_avarage}</p>
+                        <p>Calificación:{this.state.info.vote_average}</p>
                         <p>Duración: {this.state.info.runtime} minutos</p>
                         <p>{this.state.info.overview}</p>
                         <button onClick={() => this.agregarYQuitarDeFavoritos(this.state.info.id)}>{this.state.mensajeFavorito}</button>

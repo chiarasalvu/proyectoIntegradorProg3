@@ -75,15 +75,17 @@ class MovieCard extends Component {
                         <img src={`https://image.tmdb.org/t/p/w342/${this.props.datosPelicula.poster_path}`} alt="" />
                     </Link>
                 </div>
-                <h2>{this.props.datosPelicula.title}</h2> {/* Nombre */}
+                <h3>{this.props.datosPelicula.title}</h3> {/* Nombre */}
 
                 <p className='more' onClick={() => this.verMas()}>{this.state.mensajeVerMas}</p>
                 <p className={this.state.booleanoVerMas ? '' : 'no-visible'}>{this.props.datosPelicula.overview}</p> {/*Descripción*/}
 
-                <button onClick={() => {
+                <button className='botonFav' onClick={() => {
                     this.agregarYQuitarDeFavoritos(this.props.datosPelicula.id);
-                    this.props.borrar(this.props.datosPelicula.id);
-                }}>
+                    if(this.props.isFav){
+                        this.props.borrar(this.props.datosPelicula.id);
+                    }
+                    }} >
                     {this.state.mensajeFavorito}
                 </button>
 
