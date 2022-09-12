@@ -11,7 +11,6 @@ class SerieCard extends Component {
         }
     }
 
-
     componentDidMount() {
 
         let favoritos = [];
@@ -30,8 +29,6 @@ class SerieCard extends Component {
                 })
             }
         }
-
-
     }
 
     verMas() {
@@ -48,9 +45,6 @@ class SerieCard extends Component {
         }
     }
 
-
-
-
     agregarYQuitarDeFavoritos(id) {
         let favoritos = [];
 
@@ -59,7 +53,6 @@ class SerieCard extends Component {
         if (recuperoStorage !== null) {
             let favoritosToArray = JSON.parse(recuperoStorage);
             favoritos = favoritosToArray
-
         }
 
         //Preguntemos si el id ya está en el array
@@ -73,45 +66,39 @@ class SerieCard extends Component {
             favoritos.push(id); this.setState({
                 mensajeFavorito: 'Quitar de favoritos'
             })
-
-
         }
 
         let favoritosToString = JSON.stringify(favoritos)
         localStorage.setItem('favoritosSerie', favoritosToString)
-
         //console.log(localStorage);
     }
-
 
     render() {
         // console.log(this.props);
         return (
             <article className='divindex'>
                 <div>
-                 <Link to={`/series/id/${this.props.datosSerie.id}`}>
-                <img src= {`https://image.tmdb.org/t/p/w342/${this.props.datosSerie.poster_path}`} alt=""  className="portada"/> 
-                </Link>
+                    <Link to={`/series/id/${this.props.datosSerie.id}`}>
+                        <img src={`https://image.tmdb.org/t/p/w342/${this.props.datosSerie.poster_path}`} alt="" className="portada" />
+                    </Link>
                 </div>
-                    <h3>{this.props.datosSerie.name}</h3> {/* Nombre */}
-                
-                    <p className='more' onClick={() => this.verMas()}>{this.state.mensajeVerMas}</p>
+                <h3>{this.props.datosSerie.name}</h3> {/* Nombre */}
+
+                <p className='more' onClick={() => this.verMas()}>{this.state.mensajeVerMas}</p>
                 <p className={this.state.booleanoVerMas ? '' : 'no-visible'}>{this.props.datosSerie.overview}</p> {/*Descripción*/}
-                
+
                 <button onClick={() => {
                     this.agregarYQuitarDeFavoritos(this.props.datosSerie.id);
-                    if(this.props.isFav){
+                    if (this.props.isFav) {
                         this.props.borrar(this.props.datosSerie.id);
                     }
-                    }} >
+                }} >
                     {this.state.mensajeFavorito}
                 </button>
-                
-            </article>
 
+            </article>
         )
     }
-
 }
 
 export default SerieCard;

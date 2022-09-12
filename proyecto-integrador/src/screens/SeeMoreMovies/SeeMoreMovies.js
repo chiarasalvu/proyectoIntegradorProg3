@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import MovieCard from '../../components/MovieCard/MovieCard';
 const apiKey = 'b8b7f0a177fd64911123a0d6c5c6618b'
 
-
 class SeeMoreMovies extends Component {
     constructor() {
         super()
@@ -10,7 +9,8 @@ class SeeMoreMovies extends Component {
             pagina: 1,
             peliculas: [], //aparecer películas
             peliculasIniciales: [],
-            valor: ""
+            valor: "",
+            loading: true
         }
     }
 
@@ -20,8 +20,9 @@ class SeeMoreMovies extends Component {
             .then(res => res.json())
             .then(data => this.setState({
                 peliculas: data.results,
-                peliculasIniciales: data.results
-            } ))
+                peliculasIniciales: data.results,
+                loading: false
+            }))
             .catch()
     }
 
@@ -47,7 +48,6 @@ class SeeMoreMovies extends Component {
 
     filtrarPeliculas(textoDelUsuario) {
         let peliculasFiltradas = this.state.peliculasIniciales.filter(unaPelicula => unaPelicula.title.toLowerCase().includes(textoDelUsuario.toLowerCase()));
-        
         this.setState({
             peliculas: peliculasFiltradas,
         })
@@ -55,41 +55,39 @@ class SeeMoreMovies extends Component {
 
     render() {
         return (
-
-            
             <React.Fragment>
-
- 
                 {
-                    this.state.peliculas.length === 0 ?
-                    <div> 
-                            <img src="https://thumbs.gfycat.com/JovialMeagerBull-size_restricted.gif" alt= "loader"/> 
+                    this.state.loading ?
+                        <div>
+                            <img src="https://thumbs.gfycat.com/JovialMeagerBull-size_restricted.gif" alt="loader" />
                         </div>
-                    :
-                    <section className="opciones">
-                        <form onSubmit={(event) => this.evitarSubmit(event)}>
+                        :
+                        <section className="opciones">
+                            <article className='search-box'>
+                                <form onSubmit={(event) => this.evitarSubmit(event)} className='search-form'>
+                                    <input className='search-text' type="text" onChange={(event) => this.controlarCambios(event)} value={this.state.valor} />
+                                    <input className='search-button' type="submit" value="Buscar" />
+                                </form>
+                            </article>
+                            <div>
+                                {
+                                    this.state.peliculas.length === 0 ?
+                                        <>No se encontraron resultados</>
+                                        :
+                                        this.state.peliculas.map((unaPelicula, idx) => <MovieCard key={unaPelicula.title + idx} datosPelicula={unaPelicula} />)
+                                }
+                            </div>
+                        </section>
 
-                        <input type="text" onChange={(event) => this.controlarCambios(event)} value={this.state.valor} />
-                        <input type="submit" value="Submit" />
-                    </form>
-                    <div>
-                        {
-                            this.state.peliculas.map((unaPelicula, idx) => <MovieCard key={unaPelicula.title + idx} datosPelicula={unaPelicula} />)
-                        }
-                    </div>
-                </section>
-                    
                 }
-
-                    
-                <button onClick={() => this.traerMas()}> Traer más peliculas </button>
+                <div className='botonTraerMas'>
+                    <button onClick={() => this.traerMas()} className='traerMas'> Traer más peliculas </button>
+                </div>
             </React.Fragment>
         )
     }
-
 }
 
-
-export default SeeMoreMovies
+export default SeeMoreMovies;
 
 

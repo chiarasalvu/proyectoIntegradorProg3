@@ -21,9 +21,9 @@ function App() {
           <Route path="/favoritos" component={Favorites} />
           <Route exact={true} path="/peliculas" component={SeeMoreMovies} />
           <Route exact={true} path="/series" component={SeeMoreSeries} />
-          <Route  path="/peliculas/id/:id" component={DetailMovie} />
-          <Route  path="/series/id/:id" component={DetailSerie} />
-          <Route path='' component={NotFound}/>
+          <Route path="/peliculas/id/:id" component={DetailMovie} />
+          <Route path="/series/id/:id" component={DetailSerie} />
+          <Route path='' component={NotFound} />
         </Switch>
       </main>
       <Footer />

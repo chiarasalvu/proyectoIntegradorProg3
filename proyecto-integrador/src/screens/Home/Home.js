@@ -8,7 +8,6 @@ const apiKey = 'b8b7f0a177fd64911123a0d6c5c6618b'
 class Home extends Component {
     constructor() {
         super()
-
         this.state = {
             resultadosDeBusqueda: [],
             valor: ''
@@ -23,8 +22,10 @@ class Home extends Component {
 
     evitarSubmit(event) {
         event.preventDefault();
+        if (this.state.valor === '') {
+            return
+        }
         this.buscar()
-
     }
 
     controlarCambios(event) {
@@ -38,22 +39,18 @@ class Home extends Component {
                 resultadosDeBusqueda: data.results
             }))
             .catch()
-
     }
 
-
-
     render() {
-
         return (
             <React.Fragment>
                 <main>
-                    <article id='search-box'>
-                        <form onSubmit={(event) => this.evitarSubmit(event)} id='search-form'>
-                            <input id='search-text' type="text" onChange={(event) => this.controlarCambios(event)} value={this.state.valor} />
-                            <input id='search-button' type="submit" value="Buscar" />
+                    <article className='search-box'>
+                        <form onSubmit={(event) => this.evitarSubmit(event)}>
+                            <input className='search-text' type="text" onChange={(event) => this.controlarCambios(event)} value={this.state.valor} />
+                            <input className='search-button' type="submit" value="Buscar" />
+                            <button onClick={() => this.reset()} className='search-button'>Resetear</button>
                         </form>
-                        <button onClick={() => this.reset()} className='boton'>Resetear</button>
                     </article>
 
                     {
@@ -76,6 +73,6 @@ class Home extends Component {
             </React.Fragment>
         )
     }
-
 }
+
 export default Home;

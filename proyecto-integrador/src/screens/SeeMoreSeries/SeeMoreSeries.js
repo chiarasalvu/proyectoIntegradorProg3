@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import SerieCard from '../../components/SerieCard/SerieCard';
 const apiKey = 'b8b7f0a177fd64911123a0d6c5c6618b'
 
-
 class SeeMoreSeries extends Component {
     constructor() {
         super()
@@ -47,7 +46,6 @@ class SeeMoreSeries extends Component {
 
     filtrarSeries(textoDelUsuario) {
         let seriesFiltradas = this.state.seriesIniciales.filter(unaSerie => unaSerie.name.toLowerCase().includes(textoDelUsuario.toLowerCase()));
-        
         this.setState({
             series: seriesFiltradas,
         })
@@ -56,26 +54,25 @@ class SeeMoreSeries extends Component {
     render() {
         return (
             <React.Fragment>
-
                 <section className="opciones">
-
-                    <form onSubmit={(event) => this.evitarSubmit(event)}>
-
-                        <input type="text" onChange={(event) => this.controlarCambios(event)} value={this.state.valor} />
-                        <input type="submit" value="Submit" />
-                    </form>
+                    <article className='search-box'>
+                        <form onSubmit={(event) => this.evitarSubmit(event)} className='search-form'>
+                            <input className='search-text' type="text" onChange={(event) => this.controlarCambios(event)} value={this.state.valor} />
+                            <input className='search-button' type="submit" value="Buscar" />
+                        </form>
+                    </article>
                     <div>
                         {
                             this.state.series.map((unaSerie, idx) => <SerieCard key={unaSerie.name + idx} datosSerie={unaSerie} />)
                         }
                     </div>
                 </section>
-                <button onClick={() => this.traerMas()}> Traer más series </button>
+                <div className='botonTraerMas'>
+                    <button onClick={() => this.traerMas()} className='traerMas'> Traer más series </button>
+                </div>
             </React.Fragment>
         )
     }
-
 }
 
-
-export default SeeMoreSeries
+export default SeeMoreSeries;

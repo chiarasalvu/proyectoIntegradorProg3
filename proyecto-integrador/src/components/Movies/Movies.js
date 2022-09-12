@@ -16,18 +16,13 @@ class Movies extends Component {
             .then(res => res.json())
             .then(data => this.setState({
                 peliculas: data.results
-                
             }))
             .catch()
     }
 
-
-    
     render() {
-        return(
-            
+        return (
             <React.Fragment>
-                
                 <section className="opciones">
                     <h2>PELÍCULAS POPULARES</h2>
                     <div>
@@ -39,8 +34,6 @@ class Movies extends Component {
             </React.Fragment>
         )
     }
-
 }
-
 
 export default Movies;

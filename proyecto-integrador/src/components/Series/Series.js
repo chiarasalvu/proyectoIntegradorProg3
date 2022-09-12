@@ -21,13 +21,9 @@ class Series extends Component {
             .catch()
     }
 
-
-
     render() {
         return (
-
             <React.Fragment>
-
                 <section className="opciones">
                     <h2>SERIES POPULARES</h2>
                     <div>
@@ -39,8 +35,6 @@ class Series extends Component {
             </React.Fragment>
         )
     }
-
 }
-
 
 export default Series;

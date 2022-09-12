@@ -1,15 +1,12 @@
 import React, { Component } from 'react';
 const apiKey = 'b8b7f0a177fd64911123a0d6c5c6618b'
 
-
-class SerieDetail extends Component {
-
+class DetailSerie extends Component {
     constructor(props) {
         super(props);
         this.state = {
             info: {
                 genres: []
-
             },
             mensajeFavorito: 'Agregar a favoritos',
         }
@@ -66,38 +63,31 @@ class SerieDetail extends Component {
 
     render() {
         return (
-
             <React.Fragment>
-
                 <section className="opciones">
                     <h2>DETALLES DE LA SERIE</h2>
                     <article className='divindex'>
                         <div>
-
-                            <img src={`https://image.tmdb.org/t/p/w342/${this.state.info.poster_path}`} alt="" />
-
+                            <img src={`https://image.tmdb.org/t/p/w342/${this.state.info.poster_path}`} alt="" className="portada" />
                         </div>
-                        <h2>{this.state.info.name}</h2>
-
-                        <ul>
-                            Géneros:
-                            {
-                                this.state.info.genres.map((unGenero, idx) => <li key={unGenero.id + idx}> {unGenero.name} </li>)
-                            }
-                        </ul>
-
-                        <p>Fecha de estreno: {this.state.info.first_air_date}</p>
-                        <p>Calificación:{this.state.info.vote_average}</p>
-                        <p>{this.state.info.overview}</p>
-                        <button onClick={() => this.agregarYQuitarDeFavoritos(this.state.info.id)}>{this.state.mensajeFavorito}</button>
+                        <h3>{this.state.info.name}</h3>
+                        <div className='detalle'>
+                            <ul>
+                                Géneros:
+                                {
+                                    this.state.info.genres.map((unGenero, idx) => <li key={unGenero.id + idx}> {unGenero.name} </li>)
+                                }
+                            </ul>
+                            <p>Fecha de estreno: {this.state.info.first_air_date}</p>
+                            <p>Calificación:{this.state.info.vote_average}</p>
+                            <p>{this.state.info.overview}</p>
+                            <button onClick={() => this.agregarYQuitarDeFavoritos(this.state.info.id)}>{this.state.mensajeFavorito}</button>
+                        </div>
                     </article>
                 </section>
-            </React.Fragment >
+            </React.Fragment>
         )
     }
-
 }
 
-
-
-export default SerieDetail
+export default DetailSerie;

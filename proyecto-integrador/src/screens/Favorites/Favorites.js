@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import MovieCard from "../../components/MovieCard/MovieCard";
 import SerieCard from "../../components/SerieCard/SerieCard";
 
-
 const apiKey = 'b8b7f0a177fd64911123a0d6c5c6618b'
 
 class Favorites extends Component {
@@ -11,7 +10,7 @@ class Favorites extends Component {
         this.state = {
             peliculas: [],
             series: [],
-            isFav: true,
+            isFav: true
         }
     }
 
@@ -23,9 +22,9 @@ class Favorites extends Component {
         if (recuperoStorageMovie !== null) {
             favoritos = JSON.parse(recuperoStorageMovie) //es un array de ids
 
-            //recorrer el array y pedirla al endpoint por los datos de cada personaje.
+            //recorrer el array y pedirla al endpoint por los datos de cada pelicula.
             favoritos.forEach(unIdFavorito => {
-                //pedir por cada id los datos del personaje
+                //pedir por cada id los datos de la pelicula
                 fetch(`https://api.themoviedb.org/3/movie/${unIdFavorito}&?api_key=${apiKey}`)
                     .then(res => res.json())
                     .then(data => this.setState({
@@ -38,10 +37,9 @@ class Favorites extends Component {
         if (recuperoStorageSerie !== null) {
             favoritos = JSON.parse(recuperoStorageSerie) //es un array de ids
 
-
-            //recorrer el array y pedirla al endpoint por los datos de cada personaje.
+            //recorrer el array y pedirla al endpoint por los datos de cada pelicula.
             favoritos.forEach(unIdFavorito => {
-                //pedir por cada id los datos del personaje
+                //pedir por cada id los datos de la pelicula
                 fetch(`https://api.themoviedb.org/3/tv/${unIdFavorito}&?api_key=${apiKey}`)
                     .then(res => res.json())
                     .then(data => this.setState({
@@ -60,7 +58,6 @@ class Favorites extends Component {
             series: seriesFiltradas
         })
     }
-
 
     render() {
         return (
