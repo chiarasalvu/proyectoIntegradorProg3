@@ -55,11 +55,19 @@ class SeeMoreMovies extends Component {
 
     render() {
         return (
+
+            
             <React.Fragment>
 
-                <section className="opciones">
-
-                    <form onSubmit={(event) => this.evitarSubmit(event)}>
+ 
+                {
+                    this.state.peliculas.length === 0 ?
+                    <div> 
+                            <img src="https://thumbs.gfycat.com/JovialMeagerBull-size_restricted.gif" alt= "loader"/> 
+                        </div>
+                    :
+                    <section className="opciones">
+                        <form onSubmit={(event) => this.evitarSubmit(event)}>
 
                         <input type="text" onChange={(event) => this.controlarCambios(event)} value={this.state.valor} />
                         <input type="submit" value="Submit" />
@@ -70,6 +78,10 @@ class SeeMoreMovies extends Component {
                         }
                     </div>
                 </section>
+                    
+                }
+
+                    
                 <button onClick={() => this.traerMas()}> Traer más peliculas </button>
             </React.Fragment>
         )
@@ -79,3 +91,5 @@ class SeeMoreMovies extends Component {
 
 
 export default SeeMoreMovies
+
+
