@@ -48,11 +48,13 @@ class Home extends Component {
         return (
             <React.Fragment>
                 <main>
-                    <form onSubmit={(event) => this.evitarSubmit(event)}>
-                        <input type="text" onChange={(event) => this.controlarCambios(event)} value={this.state.valor} />
-                        <input type="submit" value="Buscar" />
-                    </form>
-                    <button onClick={() => this.reset()}>Resetear</button>
+                    <article id='search-box'>
+                        <form onSubmit={(event) => this.evitarSubmit(event)} id='search-form'>
+                            <input id='search-text' type="text" onChange={(event) => this.controlarCambios(event)} value={this.state.valor} />
+                            <input id='search-button' type="submit" value="Buscar" />
+                        </form>
+                        <button onClick={() => this.reset()} className='boton'>Resetear</button>
+                    </article>
 
                     {
                         this.state.resultadosDeBusqueda.length > 0 ?
