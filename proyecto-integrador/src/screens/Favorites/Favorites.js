@@ -75,7 +75,7 @@ class Favorites extends Component {
                 <section className="opciones" id="serieFav">
                     <h3>Series Favoritas</h3>
                     {
-                        this.state.series.map((unaSerie, idx) => <SerieCard key={unaSerie.name + idx} datosSerie={unaSerie} borrar={(id) => this.borrar(id)} />)
+                        this.state.series.map((unaSerie, idx) => <SerieCard key={unaSerie.name + idx} isFav={this.state.isFav} datosSerie={unaSerie} borrar={(id) => this.borrar(id)} />)
                     }
                 </section>
             </React.Fragment>

@@ -100,8 +100,10 @@ class SerieCard extends Component {
                 
                 <button onClick={() => {
                     this.agregarYQuitarDeFavoritos(this.props.datosSerie.id);
-                    this.props.borrar(this.props.datosSerie.id);
-                }}>
+                    if(this.props.isFav){
+                        this.props.borrar(this.props.datosSerie.id);
+                    }
+                    }} >
                     {this.state.mensajeFavorito}
                 </button>
                 
