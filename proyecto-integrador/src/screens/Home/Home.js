@@ -10,7 +10,8 @@ class Home extends Component {
         super()
         this.state = {
             resultadosDeBusqueda: [],
-            valor: ''
+            valor: '',
+            
         }
     }
 
@@ -36,7 +37,8 @@ class Home extends Component {
         fetch('https://api.themoviedb.org/3/search/multi?api_key=' + apiKey + '&query=' + this.state.valor)
             .then(res => res.json())
             .then(data => this.setState({
-                resultadosDeBusqueda: data.results
+                resultadosDeBusqueda: data.results,
+               
             }))
             .catch()
     }
@@ -44,6 +46,7 @@ class Home extends Component {
     render() {
         return (
             <React.Fragment>
+              
                 <main>
                     <article className='search-box'>
                         <form onSubmit={(event) => this.evitarSubmit(event)}>

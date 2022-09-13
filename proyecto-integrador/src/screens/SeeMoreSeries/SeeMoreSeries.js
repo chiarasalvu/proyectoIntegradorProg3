@@ -9,7 +9,8 @@ class SeeMoreSeries extends Component {
             pagina: 1,
             series: [], //aparecer series
             seriesIniciales: [],
-            valor: ""
+            valor: "",
+            loading: true
         }
     }
 
@@ -19,7 +20,8 @@ class SeeMoreSeries extends Component {
             .then(res => res.json())
             .then(data => this.setState({
                 series: data.results,
-                seriesIniciales: data.results
+                seriesIniciales: data.results,
+                loading: false
             }))
             .catch()
     }
@@ -54,19 +56,27 @@ class SeeMoreSeries extends Component {
     render() {
         return (
             <React.Fragment>
-                <section className="opciones">
-                    <article className='search-box'>
-                        <form onSubmit={(event) => this.evitarSubmit(event)} className='search-form'>
-                            <input className='search-text' type="text" onChange={(event) => this.controlarCambios(event)} value={this.state.valor} />
-                            <input className='search-button' type="submit" value="Buscar" />
-                        </form>
-                    </article>
-                    <div>
-                        {
-                            this.state.series.map((unaSerie, idx) => <SerieCard key={unaSerie.name + idx} datosSerie={unaSerie} />)
-                        }
-                    </div>
-                </section>
+                {
+                    this.state.loading ?
+                        <div>
+                            <img src="https://thumbs.gfycat.com/JovialMeagerBull-size_restricted.gif" alt="loader" />
+                        </div>
+                        :
+                        <section className="opciones">
+                        <article className='search-box'>
+                            <form onSubmit={(event) => this.evitarSubmit(event)} className='search-form'>
+                                <input className='search-text' type="text" onChange={(event) => this.controlarCambios(event)} value={this.state.valor} />
+                                <input className='search-button' type="submit" value="Buscar" />
+                            </form>
+                        </article>
+                        <div>
+                            {
+                                this.state.series.map((unaSerie, idx) => <SerieCard key={unaSerie.name + idx} datosSerie={unaSerie} />)
+                            }
+                        </div>
+                    </section>
+                }
+               
                 <div className='botonTraerMas'>
                     <button onClick={() => this.traerMas()} className='traerMas'> Traer más series </button>
                 </div>

@@ -10,7 +10,8 @@ class Favorites extends Component {
         this.state = {
             peliculas: [],
             series: [],
-            isFav: true
+            isFav: true,
+            loading: true
         }
     }
 
@@ -28,7 +29,9 @@ class Favorites extends Component {
                 fetch(`https://api.themoviedb.org/3/movie/${unIdFavorito}&?api_key=${apiKey}`)
                     .then(res => res.json())
                     .then(data => this.setState({
-                        peliculas: this.state.peliculas.concat([data])
+                        peliculas: this.state.peliculas.concat([data]),
+                        loading: false
+
                     }, () => console.log(this.state.peliculas)))
                     .catch(e => console.log(e))
             })
@@ -63,18 +66,29 @@ class Favorites extends Component {
         return (
             <React.Fragment>
                 <h2>Favoritos</h2>
-                <section className="opciones" id="movieFav">
-                    <h3>Películas Favoritas</h3>
-                    {
-                        this.state.peliculas.map((unaPelicula, idx) => <MovieCard key={unaPelicula.title + idx} isFav={this.state.isFav} datosPelicula={unaPelicula} borrar={(id) => this.borrar(id)} />)
-                    }
-                </section>
-                <section className="opciones" id="serieFav">
-                    <h3>Series Favoritas</h3>
-                    {
-                        this.state.series.map((unaSerie, idx) => <SerieCard key={unaSerie.name + idx} isFav={this.state.isFav} datosSerie={unaSerie} borrar={(id) => this.borrar(id)} />)
-                    }
-                </section>
+                {
+                    this.state.loading ?
+                        <div>
+                            <img src="https://thumbs.gfycat.com/JovialMeagerBull-size_restricted.gif" alt="loader" />
+                        </div>
+                        :
+                        <>
+                            <section className="opciones" id="movieFav">
+                                <h3>Películas Favoritas</h3>
+                                {
+                                    this.state.peliculas.map((unaPelicula, idx) => <MovieCard key={unaPelicula.title + idx} isFav={this.state.isFav} datosPelicula={unaPelicula} borrar={(id) => this.borrar(id)} />)
+                                }
+                            </section>
+                            <section className="opciones" id="serieFav">
+                                <h3>Series Favoritas</h3>
+                                {
+                                    this.state.series.map((unaSerie, idx) => <SerieCard key={unaSerie.name + idx} isFav={this.state.isFav} datosSerie={unaSerie} borrar={(id) => this.borrar(id)} />)
+                                }
+                            </section>
+                        </>
+                }
+
+
             </React.Fragment>
         )
     }

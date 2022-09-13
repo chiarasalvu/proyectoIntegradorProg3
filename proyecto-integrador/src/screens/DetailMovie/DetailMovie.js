@@ -9,6 +9,7 @@ class DetailMovie extends Component {
                 genres: []
             },
             mensajeFavorito: 'Agregar a favoritos',
+            loading: true
         }
     };
 
@@ -16,7 +17,9 @@ class DetailMovie extends Component {
         fetch('https://api.themoviedb.org/3/movie/' + this.props.match.params.id + '?api_key=' + apiKey + '&language=en-US')
             .then(res => res.json())
             .then(data => this.setState({
-                info: data
+                info: data,
+                loading: false
+
             }, () => console.log(this.state.info)))
             .catch(error => console.log('El error fue: ' + error))
 
@@ -64,41 +67,41 @@ class DetailMovie extends Component {
     render() {
         return (
             <React.Fragment>
-                <section className="opciones">
-                    <h2>DETALLES DE LA PELÍCULA</h2>
-
-                    {
-                        this.state.info.length === 0 ?
-                            <div>
-                                <img src="https://c.tenor.com/1qrYT711uEoAAAAC/cargando.gif" alt="loader" />
-                            </div>
-
-                            :
-                            <article className='divindex'>
-                                <div>
-
-                                    <img src={`https://image.tmdb.org/t/p/w342/${this.state.info.poster_path}`} alt="" className="portada" />
-
-                                </div>
-                                <h3>{this.state.info.title}</h3>
-
-                                <div className='detalle'>
-                                    <ul>
-                                        Géneros:
-                                        {
-                                            this.state.info.genres.map((unGenero, idx) => <li key={unGenero.id + idx}> {unGenero.name} </li>)
-                                        }
-                                    </ul>
-
-                                    <p>Fecha de estreno: {this.state.info.release_date}</p>
-                                    <p>Calificación:{this.state.info.vote_average}</p>
-                                    <p>Duración: {this.state.info.runtime} minutos</p>
-                                    <p>{this.state.info.overview}</p>
-                                    <button onClick={() => this.agregarYQuitarDeFavoritos(this.state.info.id)}>{this.state.mensajeFavorito}</button>
-                                </div>
-                            </article>
-                    }
-                </section>
+                {
+                     this.state.loading ?
+                     <div>
+                         <img src="https://thumbs.gfycat.com/JovialMeagerBull-size_restricted.gif" alt="loader" />
+                     </div>
+                     :
+                     <section className="opciones">
+                     <h2>DETALLES DE LA PELÍCULA</h2>
+                             <article className='divindex'>
+                                 <div>
+ 
+                                     <img src={`https://image.tmdb.org/t/p/w342/${this.state.info.poster_path}`} alt="" className="portada" />
+ 
+                                 </div>
+                                 <h3>{this.state.info.title}</h3>
+ 
+                                 <div className='detalle'>
+                                     <ul>
+                                         Géneros:
+                                         {
+                                             this.state.info.genres.map((unGenero, idx) => <li key={unGenero.id + idx}> {unGenero.name} </li>)
+                                         }
+                                     </ul>
+ 
+                                     <p>Fecha de estreno: {this.state.info.release_date}</p>
+                                     <p>Calificación:{this.state.info.vote_average}</p>
+                                     <p>Duración: {this.state.info.runtime} minutos</p>
+                                     <p>{this.state.info.overview}</p>
+                                     <button onClick={() => this.agregarYQuitarDeFavoritos(this.state.info.id)}>{this.state.mensajeFavorito}</button>
+                                 </div>
+                             </article>
+                     
+                 </section>
+                }
+              
             </React.Fragment >
         )
     }

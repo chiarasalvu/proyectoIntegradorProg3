@@ -9,6 +9,7 @@ class DetailSerie extends Component {
                 genres: []
             },
             mensajeFavorito: 'Agregar a favoritos',
+            loading: true
         }
     };
 
@@ -16,7 +17,8 @@ class DetailSerie extends Component {
         fetch('https://api.themoviedb.org/3/tv/' + this.props.match.params.id + '?api_key=' + apiKey + '&language=en-US')
             .then(res => res.json())
             .then(data => this.setState({
-                info: data
+                info: data,
+                loading: false
             }, () => console.log(this.state.info)))
             .catch(error => console.log('El error fue: ' + error))
 
@@ -64,6 +66,12 @@ class DetailSerie extends Component {
     render() {
         return (
             <React.Fragment>
+                {
+                    this.state.loading ?
+                        <div>
+                            <img src="https://thumbs.gfycat.com/JovialMeagerBull-size_restricted.gif" alt="loader" />
+                        </div>
+                        :
                 <section className="opciones">
                     <h2>DETALLES DE LA SERIE</h2>
                     <article className='divindex'>
@@ -85,6 +93,7 @@ class DetailSerie extends Component {
                         </div>
                     </article>
                 </section>
+                }
             </React.Fragment>
         )
     }
