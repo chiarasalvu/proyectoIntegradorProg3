@@ -329,6 +329,10 @@ footer ul li {
     background-color: blanchedalmond;
 }
 
+.more {
+    color: white;
+}
+
 /* Comenzamos con media queries de la pagina index */
 
 @media (min-width: 960px) {
@@ -375,6 +379,10 @@ footer ul li {
         align-items: center;
         background-color: rgb(0, 0, 0);
       
+    }
+    
+    .more {
+        color: white;
     }
 
 }
