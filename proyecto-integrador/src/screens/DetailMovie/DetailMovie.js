@@ -73,17 +73,17 @@ class DetailMovie extends Component {
                          <img src="https://thumbs.gfycat.com/JovialMeagerBull-size_restricted.gif" alt="loader" />
                      </div>
                      :
-                     <section className="opciones">
+                     <main className="maindetail">
                      <h2>DETALLES DE LA PELÍCULA</h2>
-                             <article className='divindex'>
-                                 <div>
- 
-                                     <img src={`https://image.tmdb.org/t/p/w342/${this.state.info.poster_path}`} alt="" className="portada" />
- 
+                             
+                     <h3>{this.state.info.title}</h3>
+                                 <div className='navdetalles'>
+                                    
+                                    <div> <img src={`https://image.tmdb.org/t/p/w342/${this.state.info.poster_path}`} alt="" className="portada" /> </div>
+                                     
                                  </div>
-                                 <h3>{this.state.info.title}</h3>
- 
-                                 <div className='detalle'>
+                        
+                                 <div className='navdetalles'>
                                      <ul>
                                          Géneros:
                                          {
@@ -94,12 +94,12 @@ class DetailMovie extends Component {
                                      <p>Fecha de estreno: {this.state.info.release_date}</p>
                                      <p>Calificación:{this.state.info.vote_average}</p>
                                      <p>Duración: {this.state.info.runtime} minutos</p>
-                                     <p>{this.state.info.overview}</p>
-                                     <button onClick={() => this.agregarYQuitarDeFavoritos(this.state.info.id)}>{this.state.mensajeFavorito}</button>
+                                     <p >{this.state.info.overview}</p>
+                                     <button className = " agregarFav" onClick={() => this.agregarYQuitarDeFavoritos(this.state.info.id)}>{this.state.mensajeFavorito}</button>
                                  </div>
-                             </article>
+                             
                      
-                 </section>
+                 </main>
                 }
               
             </React.Fragment >

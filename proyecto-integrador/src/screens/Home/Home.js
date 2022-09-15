@@ -17,7 +17,9 @@ class Home extends Component {
 
     reset() {
         this.setState({
-            resultadosDeBusqueda: []
+            resultadosDeBusqueda: [],
+            valor: ""
+            
         })
     }
 
@@ -34,7 +36,7 @@ class Home extends Component {
     }
 
     buscar(textoDeBusqueda) {
-        fetch('https://api.themoviedb.org/3/search/multi?api_key=' + apiKey + '&query=' + this.state.valor)
+        fetch('https://api.themoviedb.org/3/search/movie?api_key=' + apiKey + '&query=' + this.state.valor)
             .then(res => res.json())
             .then(data => this.setState({
                 resultadosDeBusqueda: data.results,
@@ -62,7 +64,7 @@ class Home extends Component {
                             <section className="opciones">
                                 <div>
                                     {
-                                        this.state.resultadosDeBusqueda.map((unaPelicula, idx) => <MovieCard key={unaPelicula.id + idx} datosPelicula={unaPelicula} />)
+                                        this.state.resultadosDeBusqueda.map((unaPelicula, idx) => <MovieCard key={unaPelicula.title + idx} datosPelicula={unaPelicula} />)
                                     }
                                 </div>
                             </section>

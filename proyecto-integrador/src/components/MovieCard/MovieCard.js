@@ -78,7 +78,7 @@ class MovieCard extends Component {
                 <h3>{this.props.datosPelicula.title}</h3> {/* Nombre */}
 
                 <p className='more' onClick={() => this.verMas()}>{this.state.mensajeVerMas}</p>
-                <p className={this.state.booleanoVerMas ? '' : 'no-visible'}>{this.props.datosPelicula.overview}</p> {/*Descripción*/}
+                <p className={this.state.booleanoVerMas ? 'descrpicion' : 'no-visible'}>{this.props.datosPelicula.overview}</p> {/*Descripción*/}
 
                 <button onClick={() => {
                     this.agregarYQuitarDeFavoritos(this.props.datosPelicula.id);
