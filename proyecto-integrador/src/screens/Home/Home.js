@@ -11,15 +11,17 @@ class Home extends Component {
         this.state = {
             resultadosDeBusqueda: [],
             valor: '',
-            
+            buscando: false
+
         }
     }
 
     reset() {
         this.setState({
             resultadosDeBusqueda: [],
-            valor: ""
-            
+            valor: "",
+            buscando: false
+
         })
     }
 
@@ -40,7 +42,7 @@ class Home extends Component {
             .then(res => res.json())
             .then(data => this.setState({
                 resultadosDeBusqueda: data.results,
-               
+                buscando: true
             }))
             .catch()
     }
@@ -48,7 +50,7 @@ class Home extends Component {
     render() {
         return (
             <React.Fragment>
-              
+
                 <main>
                     <article className='search-box'>
                         <form onSubmit={(event) => this.evitarSubmit(event)}>
@@ -59,12 +61,15 @@ class Home extends Component {
                     </article>
 
                     {
-                        this.state.resultadosDeBusqueda.length > 0 ?
+                        this.state.buscando ?
 
                             <section className="opciones">
                                 <div>
                                     {
-                                        this.state.resultadosDeBusqueda.map((unaPelicula, idx) => <MovieCard key={unaPelicula.title + idx} datosPelicula={unaPelicula} />)
+                                        this.state.resultadosDeBusqueda.length === 0 ?
+                                            <>No se encontraron resultados</>
+                                            :
+                                            this.state.resultadosDeBusqueda.map((unaPelicula, idx) => <MovieCard key={unaPelicula.title + idx} datosPelicula={unaPelicula} />)
                                     }
                                 </div>
                             </section>
