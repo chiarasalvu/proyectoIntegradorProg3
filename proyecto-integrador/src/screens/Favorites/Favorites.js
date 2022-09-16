@@ -73,7 +73,7 @@ class Favorites extends Component {
             <React.Fragment>
                 <h2>Favoritos</h2>
                 {
-                    this.state.loading ?
+                    this.state.loading === 0 ?
                         <div>
                             <img src="https://thumbs.gfycat.com/JovialMeagerBull-size_restricted.gif" alt="loader" />
                         </div>
