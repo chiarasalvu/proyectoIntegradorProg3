@@ -6,7 +6,8 @@ class Movies extends Component {
     constructor() {
         super()
         this.state = {
-            peliculas: [] //aparecer películas
+            peliculas: [],
+            loading: true //aparecer películas
         }
     }
 
@@ -15,7 +16,8 @@ class Movies extends Component {
         fetch('https://api.themoviedb.org/3/movie/popular?api_key=' + apiKey)
             .then(res => res.json())
             .then(data => this.setState({
-                peliculas: data.results
+                peliculas: data.results,
+                loading: false
             }))
             .catch()
     }
@@ -23,14 +25,22 @@ class Movies extends Component {
     render() {
         return (
             <React.Fragment>
-                <section className="opciones">
-                    <h2>PELÍCULAS POPULARES</h2>
-                    <div>
-                        {
-                            this.state.peliculas.map((unaPelicula, idx) => <MovieCard key={unaPelicula.title + idx} datosPelicula={unaPelicula} />)
-                        }
-                    </div>
-                </section>
+                {
+                    this.state.loading ?
+                        <div>
+                            <img src="https://thumbs.gfycat.com/JovialMeagerBull-size_restricted.gif" alt="loader" />
+                        </div>
+                        :
+                        <section className="opciones">
+                            <h2>PELÍCULAS POPULARES</h2>
+                            <div>
+                                {
+                                    this.state.peliculas.map((unaPelicula, idx) => <MovieCard key={unaPelicula.title + idx} datosPelicula={unaPelicula} />)
+                                }
+                            </div>
+                        </section>
+                }
+
             </React.Fragment>
         )
     }

@@ -77,7 +77,7 @@ class SeeMoreMovies extends Component {
                                         this.state.peliculas.map((unaPelicula, idx) => <MovieCard key={unaPelicula.title + idx} datosPelicula={unaPelicula} />)
                                 }
                             </div>
-                        </section>
+                        </section> 
 
                 }
                 <div className='botonTraerMas'>

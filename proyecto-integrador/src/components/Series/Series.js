@@ -6,7 +6,8 @@ class Series extends Component {
     constructor() {
         super()
         this.state = {
-            series: [] //aparecer series
+            series: [], //aparecer series
+            loading: true
         }
     }
 
@@ -15,8 +16,8 @@ class Series extends Component {
         fetch('https://api.themoviedb.org/3/tv/popular?api_key=' + apiKey)
             .then(res => res.json())
             .then(data => this.setState({
-                series: data.results
-
+                series: data.results,
+                loading: false
             }))
             .catch()
     }
@@ -24,14 +25,22 @@ class Series extends Component {
     render() {
         return (
             <React.Fragment>
-                <section className="opciones">
-                    <h2>SERIES POPULARES</h2>
-                    <div>
-                        {
-                            this.state.series.map((unaSerie, idx) => <SerieCard key={unaSerie.name + idx} datosSerie={unaSerie} />)
-                        }
-                    </div>
-                </section>
+                {
+                    this.state.loading ?
+                        <div>
+                            <img src="https://thumbs.gfycat.com/JovialMeagerBull-size_restricted.gif" alt="loader" />
+                        </div>
+                        :
+                        <section className="opciones">
+                            <h2>SERIES POPULARES</h2>
+                            <div>
+                                {
+                                    this.state.series.map((unaSerie, idx) => <SerieCard key={unaSerie.name + idx} datosSerie={unaSerie} />)
+                                }
+                            </div>
+                        </section>
+                }
+
             </React.Fragment>
         )
     }
