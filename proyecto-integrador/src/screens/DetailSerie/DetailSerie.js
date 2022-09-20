@@ -73,7 +73,7 @@ class DetailSerie extends Component {
                         </div>
                         :
                         <main className="maindetail">
-                            <h2>DETALLES DE LA SERIE</h2>
+                            <h2>DETALLE DE LA SERIE</h2>
                             <h3>{this.state.info.name}</h3>
                             <div className='navdetalles' >
                                 <img src={`https://image.tmdb.org/t/p/w342/${this.state.info.poster_path}`} alt="" className="portada" />

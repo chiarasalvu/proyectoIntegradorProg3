@@ -27,7 +27,7 @@ class SeeMoreSeries extends Component {
     }
 
     traerMas() {
-        //Traer la siguiente página de peliculas
+        //Traer la siguiente página de series
         fetch('https://api.themoviedb.org/3/tv/popular?api_key=' + apiKey + '&language=en-US&page=' + (this.state.pagina + 1))
             .then(res => res.json())
             .then(data => this.setState({

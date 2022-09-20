@@ -74,7 +74,7 @@ class DetailMovie extends Component {
                         </div>
                         :
                         <main className="maindetail">
-                            <h2>DETALLES DE LA PELÍCULA</h2>
+                            <h2>DETALLE DE LA PELÍCULA</h2>
 
                             <h3>{this.state.info.title}</h3>
                             <div className='navdetalles'>
@@ -93,7 +93,7 @@ class DetailMovie extends Component {
                                 <p>Calificación:{this.state.info.vote_average}</p>
                                 <p>Duración: {this.state.info.runtime} minutos</p>
                                 <p >{this.state.info.overview}</p>
-                                <button className=" agregarFav" onClick={() => this.agregarYQuitarDeFavoritos(this.state.info.id)}>{this.state.mensajeFavorito}</button>
+                                <button onClick={() => this.agregarYQuitarDeFavoritos(this.state.info.id)}>{this.state.mensajeFavorito}</button>
                             </div>
 
 
